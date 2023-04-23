@@ -972,6 +972,20 @@ KBUILD_CPPFLAGS += $(ARCH_CPPFLAGS) $(KCPPFLAGS)
 KBUILD_AFLAGS   += $(ARCH_AFLAGS)   $(KAFLAGS)
 KBUILD_CFLAGS   += $(ARCH_CFLAGS)   $(KCFLAGS)
 
+# =============FACTORY==================================
+# Add macros only for factory version
+ifeq ($(strip $(FACTORY_VERSION_MODE)) , true)
+KBUILD_CFLAGS += -DFACTORY_VERSION_ENABLE
+endif
+# =============FACTORY==================================
+
+# =============PROJECT==================================
+# Add macros by TARGET_PRODUCT for Olive project
+ifeq ($(strip $(TARGET_PRODUCT)) , olivelite)
+else
+endif
+# =============PROJECT==================================
+
 # Use --build-id when available.
 LDFLAGS_BUILD_ID = $(patsubst -Wl$(comma)%,%,\
 			      $(call cc-ldoption, -Wl$(comma)--build-id,))
