@@ -281,7 +281,7 @@ struct binder_device {
 struct binder_work {
 	struct list_head entry;
 
-	enum binder_work_type {
+	enum {
 		BINDER_WORK_TRANSACTION = 1,
 		BINDER_WORK_TRANSACTION_COMPLETE,
 		BINDER_WORK_RETURN_ERROR,
